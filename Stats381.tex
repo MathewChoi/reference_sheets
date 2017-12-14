@@ -4,7 +4,13 @@
 \usepackage{multicol}
 \usepackage{amsmath}
 \usepackage{geometry}
+\usepackage{graphicx}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
 \geometry{a4paper, landscape, margin=0.25in}
+
+\title{STATS 381 Reference Sheet}
 
 \begin{document}
 \begin{multicols}{2}
@@ -19,7 +25,7 @@ $E[\Sigma Y] = n\mu $ & $V(\Sigma Y) = n*\sigma^2 $ \\ \hline
 \end{tabular}
 
 \section{Sampling Distributions}
-\begin{tabular}{| c | c | c | c |}
+\begin{tabular}{|c|c|c|c|}
 \hline
 Name & Density Function & $\mu$  & $\sigma^2$ \\ \hline
 Normal & $f(y) = \dfrac{1}{\sqrt{2\pi\sigma^2}}*e^{-(y - \mu)^2 / 2\sigma^2}$ & $\mu$ & $\sigma^2$ \\ \hline
@@ -34,21 +40,21 @@ Bernoulli & $f(k;y) = p^k(1-p)^{1-k}$ & $p$ & $p(1-p)$ \\ \hline
 T-distribution & $f(y) = \dfrac{\Gamma((\nu+1)/2)}{\sqrt{\pi\nu}\Gamma(\nu/2)} (1+\dfrac{t^2}{\nu})^{-(\nu+1)/2}$ & $0, \nu>1$ & $\dfrac{\nu}{\nu-2}, \nu>2$ \\ \hline
 F-distribution & $f(w) = \dfrac{\Gamma((m+n)/2)m^{m/2}n^{n/2}w^{m/2-1}}{\Gamma(m/2)\Gamma(n/2)(n+m*w)^{(m+n)/2}}$ & $\dfrac{n}{n-2}$ & $\dfrac{2n^2(m+n-1)}{m(n-2)^2(n-4)}$ \\ \hline
 \end{tabular}\\
-\textbf{F-distribution:} $Let U = \chi^2(n) and V = \chi^2(m) then  F = \dfrac{V/m}{U/n}$, denoted F(m,n)\\
-\textbf{T-distribution:} $Let Z = N(0,1) and W = \chi^2(\nu). If Z and W are independent, T = \dfrac{Z}{\sqrt{W/\nu}} has the T-distribution w/ \nu dof$\\ 
-\textbf{Thm:} Z = N(0,1) implies $\Sigma Z^2 = \chi^2(n)$ \\ 
+\textbf{F-distribution:} Let $U = \chi^2(n)$ and $V = \chi^2(m)$ then  $F = \dfrac{V/m}{U/n}$, denoted F(m,n)\\
+\textbf{T-distribution:} Let $Z = N(0,1)$ and $W = \chi^2(\nu)$. If Z and W are independent, $T = \dfrac{Z}{\sqrt{W/\nu}}$ has the T-distribution w/ $\nu$ dof\\ 
+\textbf{Thm:} $Z = N(0,1)$ implies $\Sigma Z^2 = \chi^2(n)$ \\ 
 \textbf{Thm:} $\dfrac{(n-1)s^2}{\sigma^2} = \dfrac{\Sigma (Y-\bar{Y})^2}{\sigma^2} = \chi^2(n-1)$
 
 \section{Estimation}
-\textbf{Bias:} $B(\hat{Theta}) = E[\hat{\Theta}] - \theta$ \\
+\textbf{Bias:} $B(\hat{Theta}) = E[\hat{\theta}] - \theta$ \\
 \textbf{Mean Square Error:} 
-MSE($\hat{\Theta}$) = $E[(\hat{\Theta} - \Theta)] = V(\hat{\Theta}) + B(\hat{\Theta})^2$ \\
-\textbf{Error of Estimation:} $\epsilon = |\hat{\Theta} - \Theta|$\\
-\textbf{Efficiency:} $eff(\hat{\Theta_1}, \hat{\Theta_2}) = \dfrac{V(\hat{\Theta_2})}{V(\hat{\Theta_1})}$\\
-\textbf{Consistency:} $lim_{\inf}P(|\hat{\Theta_n}-\Theta|\leq \epsilon) = 1; lim_{inf}P(|\hat{\Theta_n}-\Theta|> \epsilon) = 0$ \\
-\textbf{Thm:} An unbiased estimator $\hat{\Theta_n}$ is a consistent estimator for $\Theta$ if $lim_{\inf}V(\hat{\Theta}) = 0$ \\
-\textbf{Sufficiency:} Statistic $U = g(Y_{1:n})$ is sufficient for $\Theta$ if the conditional distribution of $Y_{1:n}$, given U doesn't depend on $\Theta$
-\textbf{Thm:} U is sufficient for $\Theta$ IFF the $L(y_{1:n}|\Theta) = g(U, \Theta)*h(y_{1:n})$\\
+MSE($\hat{\theta}$) = $E[(\hat{\theta} - \theta)] = V(\hat{\theta}) + B(\hat{\theta})^2$ \\
+\textbf{Error of Estimation:} $\epsilon = |\hat{\theta} - \theta|$\\
+\textbf{Efficiency:} $eff(\hat{\theta_1}, \hat{\theta_2}) = \dfrac{V(\hat{\theta_2})}{V(\hat{\theta_1})}$\\
+\textbf{Consistency:} $lim_{\inf}P(|\hat{\theta_n}-\theta|\leq \epsilon) = 1; lim_{inf}P(|\hat{\theta_n}-\theta|> \epsilon) = 0$ \\
+\textbf{Thm:} An unbiased estimator $\hat{\theta_n}$ is a consistent estimator for $\theta$ if $lim_{\inf}V(\hat{\theta}) = 0$ \\
+\textbf{Sufficiency:} Statistic $U = g(Y_{1:n})$ is sufficient for $\theta$ if the conditional distribution of $Y_{1:n}$, given U doesn't depend on $\theta$
+\textbf{Thm:} U is sufficient for $\theta$ IFF the $L(y_{1:n}|\theta) = g(U, \theta)*h(y_{1:n})$\\
 \textbf{Min Var Unbiased Estimator:} a sufficient statistic that has been transformed into an unbiased estimator\\
 \textbf{Method of Moments:} use the 1st and 2nd moment (if there are 2 param) and use them to find values for the parameters\\
 \textbf{Method of Maximum Likelihood:} Take the (partial) derivative of the likelihood function and find the parameters that will maximize its value. Apply ln() on the likelihood if needed.
@@ -132,6 +138,14 @@ $SST = SSR + SSE$\\
 \end{tabular}
 
 \subsection{Tests and CI for $B_i$}
+$V(\beta_0) = c_{00}\sigma^2$; $c_{00} = \dfrac{\Sigma x_i^2}{nS_{xx}}$\\
+$V(\beta_1) = c_{11}\sigma^2$; $c_{11} = \dfrac{1}{S_{xx}}$\\
+\textbf{Test Statistics:} $Z = \dfrac{\beta_i-\beta_{io}}{\sigma\sqrt{c_{ii}}}$; $T = \dfrac{\beta_i-\beta_{io}}{s\sqrt{c_{ii}}}$, dof = n-2\\
+$CI = \hat{\beta_i} \pm t_{\alpha/2}(n-2)s\sqrt{c_{ii}}$\\
+
+\begin{Figure}
+	\includegraphics[width=110mm]{Chi-squaredTable.png}
+\end{Figure}
 
 \end{multicols}
 \end{document}
