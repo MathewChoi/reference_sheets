@@ -11,7 +11,7 @@
 \section{Properties of Expectation and Variance}
 
 
-\begin{tabular} {|l|l|}
+\begin{tabular} {|c|c|}
 \hline
 Expectation & Variance \\ \hline
 $E[\bar{Y}] =  \mu $ & $V(\bar{Y}) = \sigma^2/n $ \\ \hline
@@ -25,13 +25,14 @@ Name & Density Function & $\mu$  & $\sigma^2$ \\ \hline
 Normal & $f(y) = \dfrac{1}{\sqrt{2\pi\sigma^2}}*e^{-(y - \mu)^2 / 2\sigma^2}$ & $\mu$ & $\sigma^2$ \\ \hline
 Uniform & $f(y) = \dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^2}{12}$ \\ \hline
 Exponential & $f(y) = \dfrac{1}{\beta} e^{-y/\beta}$ & $\beta$ & $\beta^2$ \\ \hline
+Gamma & $f(y) = \dfrac{\lambda(\lambda y)^{\alpha-1}e^{-\lambda y}}{\Gamma(\alpha)}$ & $\dfrac{\alpha}{\lambda}$ & $\dfrac{\alpha}{\lambda^2}$ \\ \hline
 Chi-Squared & $f(y) = \dfrac{y^{\nu/2-1}e^{-y/2}}{2^{\nu/2}\Gamma(\nu/2)}$ & $\nu$ & $2\nu$ \\ \hline
 Binomial & $p(y) = \binom{n}{y} p^y (1-p)^n-y$ & $np$ & $np(1-p)$ \\ \hline
 Poisson & $p(y) = \dfrac{e^{-\lambda}\lambda^y}{y!}$ & $\lambda$ & $\lambda$ \\ \hline
 Geometric & $p(y) = p(1-p)^{y-1}$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^2}$ \\ \hline
 Bernoulli & $f(k;y) = p^k(1-p)^{1-k}$ & $p$ & $p(1-p)$ \\ \hline
 T-distribution & $f(y) = \dfrac{\Gamma((\nu+1)/2)}{\sqrt{\pi\nu}\Gamma(\nu/2)} (1+\dfrac{t^2}{\nu})^{-(\nu+1)/2}$ & $0, \nu>1$ & $\dfrac{\nu}{\nu-2}, \nu>2$ \\ \hline
-F-distribution & $f(w) = \dfrac{\Gamma((m+n)/2)m^{m/2}n^{n/2}w^{m/2-1}}{\Gamma(m/2)\Gamma(n/2)(n+m*w)^{(m+n)/2}}$ & $$ & $\sigma^2$ \\ \hline
+F-distribution & $f(w) = \dfrac{\Gamma((m+n)/2)m^{m/2}n^{n/2}w^{m/2-1}}{\Gamma(m/2)\Gamma(n/2)(n+m*w)^{(m+n)/2}}$ & $\dfrac{n}{n-2}$ & $\dfrac{2n^2(m+n-1)}{m(n-2)^2(n-4)}$ \\ \hline
 \end{tabular}\\
 \textbf{F-distribution:} $Let U = \chi^2(n) and V = \chi^2(m) then  F = \dfrac{V/m}{U/n}$, denoted F(m,n)\\
 \textbf{T-distribution:} $Let Z = N(0,1) and W = \chi^2(\nu). If Z and W are independent, T = \dfrac{Z}{\sqrt{W/\nu}} has the T-distribution w/ \nu dof$\\ 
@@ -41,19 +42,19 @@ F-distribution & $f(w) = \dfrac{\Gamma((m+n)/2)m^{m/2}n^{n/2}w^{m/2-1}}{\Gamma(m
 \section{Estimation}
 \textbf{Bias:} $B(\hat{Theta}) = E[\hat{\Theta}] - \theta$ \\
 \textbf{Mean Square Error:} 
-$MSE(\hat{\Theta}) = E[(\hat{\Theta} - \Theta)] = V(\hat{\Theta}) + B(\hat{\Theta})^2$ \\
+MSE($\hat{\Theta}$) = $E[(\hat{\Theta} - \Theta)] = V(\hat{\Theta}) + B(\hat{\Theta})^2$ \\
 \textbf{Error of Estimation:} $\epsilon = |\hat{\Theta} - \Theta|$\\
-\textbf{Efficiency:} $eff(\hat{\Theta_1}, \hat{\Theta_2}) = \dfrac{V(\hat{\Theta_2})}{V(\hat{\Theta_1})}$
-\textbf{Consistency:} $lim_{n-inf}P(|\hat{\Theta_n}-\Theta|<= \epsilon) = 1; lim_{n-inf}P(|\hat{\Theta_n}-\Theta|> \epsilon) = 0$ \\
-\textbf{Thm:} An unbiased estimator $\hat{\Theta_n} is a consistent estimator for \Theta if lim_{n-\inf}V(\hat{\Theta}) = 0$ \\
-\textbf{Sufficiency:} Statistic $U = g(Y_{1:n}) is sufficient for \Theta if the conditional distribution of Y_{1:n}, given U doesn't depend on \Theta$
-\textbf{Thm:} U is sufficient for $\Theta IFF the L(y_{1:n}|\Theta) = g(U, \Theta)*h(y_{1:n})$\\
+\textbf{Efficiency:} $eff(\hat{\Theta_1}, \hat{\Theta_2}) = \dfrac{V(\hat{\Theta_2})}{V(\hat{\Theta_1})}$\\
+\textbf{Consistency:} $lim_{\inf}P(|\hat{\Theta_n}-\Theta|\leq \epsilon) = 1; lim_{inf}P(|\hat{\Theta_n}-\Theta|> \epsilon) = 0$ \\
+\textbf{Thm:} An unbiased estimator $\hat{\Theta_n}$ is a consistent estimator for $\Theta$ if $lim_{\inf}V(\hat{\Theta}) = 0$ \\
+\textbf{Sufficiency:} Statistic $U = g(Y_{1:n})$ is sufficient for $\Theta$ if the conditional distribution of $Y_{1:n}$, given U doesn't depend on $\Theta$
+\textbf{Thm:} U is sufficient for $\Theta$ IFF the $L(y_{1:n}|\Theta) = g(U, \Theta)*h(y_{1:n})$\\
 \textbf{Min Var Unbiased Estimator:} a sufficient statistic that has been transformed into an unbiased estimator\\
 \textbf{Method of Moments:} use the 1st and 2nd moment (if there are 2 param) and use them to find values for the parameters\\
 \textbf{Method of Maximum Likelihood:} Take the (partial) derivative of the likelihood function and find the parameters that will maximize its value. Apply ln() on the likelihood if needed.
 
 \section{Order Statistics}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|c|}
 \hline
 \textbf{$Y_{(1)}$} & \textbf{$Y_{(n)}$} \\ \hline
 $F_{Y_{(1)}}(y) = 1-[1-F_Y(y)]^{n}$ & $F_{Y_{(n)}}(y) = [F_Y(y)]^{n}$\\ \hline
@@ -62,32 +63,75 @@ $f_{Y_{(n)}}(y) = n[F_Y(y)]^{n-1}*f_Y(y) $\\ \hline
 \end{tabular}
 
 \section{Confidence Intervals}
-\begin{tabular}{| l | l | l |}
+\begin{tabular}{| c | c | c |}
 \hline
 Name & Assumptions & Confidence Interval \\ \hline
-Mean & $\sigma known$ & $\bar{Y} \pm Z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ \\ \hline
+Mean & $\sigma$ known & $\bar{Y} \pm Z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ \\ \hline
 
-& $\sigma unknown$ & $\bar{Y} \pm t_{\alpha/2}(n-1)\dfrac{s}{\sqrt{n}}$ \\ \hline
+& $\sigma$ unknown & $\bar{Y} \pm t_{\alpha/2}(n-1)\dfrac{s}{\sqrt{n}}$ \\ \hline
 
-Diff of Means & $n_i>=30, \sigma_i known$ & $\bar{Y_1} - \bar{Y_2} \pm Z_{\alpha/2}\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$ \\ \hline
+Diff of Means & $n_i\geq30, \sigma_i$ known & $\bar{Y_1} - \bar{Y_2} \pm Z_{\alpha/2}\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$ \\ \hline
 
-& $\sigma_i unknown, not equal$ & $\bar{Y_1} - \bar{Y_2} \pm t_{\alpha/2}(dof_s)\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$\\ \hline
+& $\sigma_i$ unknown, not equal & $\bar{Y_1} - \bar{Y_2} \pm t_{\alpha/2}(dof_s)\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$\\ \hline
 
-& $\sigma_i unknown, equal$ & $\bar{Y_1} - \bar{Y_2} \pm t_{\alpha/2}(dof_p)S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$\\ \hline
+& $\sigma_i$ unknown, equal & $\bar{Y_1} - \bar{Y_2} \pm t_{\alpha/2}(dof_p)S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$\\ \hline
 
-Prop & $n>=9\dfrac{max(p,q)}{min(p,q)}$ & $\hat{P} \pm Z_{\alpha/2}\sqrt{\dfrac{\hat{p}\hat{q}}{n}}$ \\ \hline
+Prop & $n\geq9\dfrac{max(p,q)}{min(p,q)}$ & $\hat{P} \pm Z_{\alpha/2}\sqrt{\dfrac{\hat{p}\hat{q}}{n}}$ \\ \hline
 
-Diff of Prop & $n_i>=9\dfrac{max(p_i,q_i)}{min(p_i,q_i)}$ & $\hat{P_1} - \hat{P_2} \pm Z_{\alpha/2}\sqrt{\dfrac{\hat{p_1}\hat{q_1}}{n_1}+\dfrac{\hat{p_2}\hat{q_2}}{n_2}}$ \\ \hline
+Diff of Prop & $n_i\geq9\dfrac{max(p_i,q_i)}{min(p_i,q_i)}$ & $\hat{P_1} - \hat{P_2} \pm Z_{\alpha/2}\sqrt{\dfrac{\hat{p_1}\hat{q_1}}{n_1}+\dfrac{\hat{p_2}\hat{q_2}}{n_2}}$ \\ \hline
 
-Var & $pop norm distr$ & $(\dfrac{(n-1)s^2}{\chi_{\alpha/2}^2(n-1)}, \dfrac{(n-1)s^2}{\chi_{1-\alpha/2}^2(n-1)})$ \\ \hline
+Var & norm pop & $(\dfrac{(n-1)s^2}{\chi_{\alpha/2}^2(n-1)}, \dfrac{(n-1)s^2}{\chi_{1-\alpha/2}^2(n-1)})$ \\ \hline
 
-Ratio of Var & $pop norm distr$ & $(\dfrac{s_1^2}{s_2^2F_{\alpha/2}(n_1-1, n_2-1)}, \dfrac{s_1^2F_{\alpha/2}(n_2-1, n_1-1)}{s_2^2})$ \\ \hline
+Ratio of Var & norm pop & $(\dfrac{s_1^2}{s_2^2F_{\alpha/2}(n_1-1, n_2-1)}, \dfrac{s_1^2F_{\alpha/2}(n_2-1, n_1-1)}{s_2^2})$ \\ \hline
 \end{tabular}
 \textbf{$dof_s$} = $\dfrac{(A + B)^2}{\dfrac{A^2}{n_1-1} + \dfrac{B^2}{n_2-1}}, A = s_1^2/n_1, B = s_2^2/n_2$ \\
 \textbf{$dof_p$} = $n_1 + n_2 - 2$ \\
 \textbf{$S_p^2$} = $\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{(n_1+n_2-2)}$\\
 
 \section{Test Statistics}
-TODO
+\begin{tabular}{|c|c|c|}
+\hline
+Name & Assumptions & Test Statistic \\ \hline
+Lrg Samp $\mu$ & $n\geq30, \sigma$ known & $Z = \dfrac{\bar{y}-\mu}{\sigma/\sqrt{n}}$ \\ \hline
+& $n\geq30, \sigma$ unknown & $T = \dfrac{\bar{y}-\mu}{\sigma/\sqrt{n}}, dof=n-1$ \\ \hline
+
+Sm Samp $\mu$ & norm pop & $T = \dfrac{\bar{y}-\mu}{\sigma/\sqrt{n}}, dof =n-1$ \\ \hline
+
+Lrg Samp $\mu_1-\mu_2$ & $\sigma_i$ known, $n_i\geq30$ & $Z = \dfrac{\bar{y_1}-\bar{y_2}-D_0}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}}$ \\ \hline
+
+& $\sigma_i$ unknown, $n_i\geq30$ & $t = \dfrac{\bar{y_1}-\bar{y_2}-D_0}{\sqrt{s_1^2/n_1+s_2^2/n_2}}, dof_s$ \\ \hline
+
+Sm Samp $\mu_1-\mu_2$ & $\sigma_i$ unknown, equal & $t = \dfrac{\bar{y_1}-\bar{y_2}-D_0}{S_p\sqrt{1/n_1+1/n_2}}$ \\ \hline
+
+Lrg Samp p & binom pop & $Z = \dfrac{y/n-p_0}{\sqrt{p_0q_0/n}}$ \\ \hline
+
+Lrg Samp $p_1-p_2$ & binom pop & $Z = \dfrac{y_1/n_1-y_2/n_2-D_0}{\sqrt{pq(1/n_1 + 1/n_2)}}, p = \dfrac{y_1+y_2}{n_1+n_2}$ \\ \hline
+
+& binom pop & $Z = \dfrac{y_1/n_1-y_2/n_2-D_0}{\sqrt{(p_1q_1/n_1 + p_2q_2/n_2)}}$ \\ \hline
+
+$\sigma^2$ & norm pop & $\chi^2 = \dfrac{(n-1)s^2}{\sigma_0^2}, dof = n-1$ \\ \hline
+
+Equality of Var & norm pop & $F = \dfrac{\sigma_1^2}{\sigma_2^2}, only right-tailed$ \\ \hline
+\end{tabular}
+\textbf{Power of a Test:} Power($\theta_x$) = P(Reject $H_0|\theta=\theta_x$); $\alpha = power(\theta_0)$; $\beta(\theta_a) = P(\bar{RR}|\bar{H_0})1-power(\theta_0)$\\
+\textbf{Neyman-Pearson Lemma:} For a given $\alpha$, the test that maximizes power($\theta_a$) as a RR is determined by $\dfrac{L(\theta_0)}{L(\theta_a)}<k.$ Works for simple hypotheses.\\
+\textbf{Uniformly Most Powerful Test:} If after applying the Neyman Pearson Lemma, the RR doesn't depend on $\alpha$, the test will maximize the $poewr(\theta_a), \forall\theta_a>\theta_0$\\
+\textbf{Likelihood Ratio Test:} Spse $\bar{\theta} = <\theta_{1:n}>$; $\Omega$ = set of all param val; $\Omega_0$ = set of all param val defined by $H_0$; $\Omega_a$ = set of all param val defined by $H_a$. Then $\lambda$ determines the RR where $\lambda = \dfrac{L(\hat{\Omega_0})}{L\hat{\Omega}} = \dfrac{max_{\bar{\theta}\in\Omega_0}L(\bar{\theta})}{max_{\theta\in\Omega}L(\theta)}, \lambda \leq 1$\\
+
+\section{Regression}
+\subsection{Equations}
+\begin{tabular}{c c}
+$\hat{y} = \beta_0 + \beta_1 x$ & $SSE = \Sigma (y - \bar{y})^2 = S_{yy} - \dfrac{S_{xy}^2}{S_{xx}}$\\
+$\hat{\beta_1} = \dfrac{n\Sigma x_iy_i - \Sigma x_i \Sigma x_iy_i}{n\Sigma x_i^2 - (\Sigma x_i)^2}$ &
+$\hat{\beta_0} = \bar{y}-\hat{\beta_1}\bar{x}$\\
+$S_{xy} = \Sigma (x-\bar{x})(y-\bar{y})$ &
+$S_{xx} = \Sigma (x-\bar{x})^2$\\
+$S_{yy} = SST = \Sigma (y-\bar{y})^2$ &
+$SSR = \Sigma (\hat{y} - \bar{y})^2$\\
+$SST = SSR + SSE$\\
+\end{tabular}
+
+\subsection{Tests and CI for $B_i$}
+
 \end{multicols}
 \end{document}
